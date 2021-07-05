@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ClinicManagementProject.Models.DoctorSchedule>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BookAppointment_Schedule</title>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Book", "BookSlotForPatient", new { timeid = item.Timeslot_Id, docid = item.Doctor_Id })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ClinicManagementProject.Models.DoctorSchedule>
+
+@{
+    ViewData["Title"] = "Doctor's Home";
+    Layout = "~/views/shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewDoctor_Schedule</title>
+</head>
+
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <form method="get" name="frmViewDoctorSchedule">
+    <table class="table" width="20%">
+        <thead>
+            <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient_Id)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient_Id)
+                    </td>
+                    
+                    <td>
+                        @Html.ActionLink("Doctor Consultations", "ConsultationUpdate", new { timeSlotId = item.Timeslot_Id, patId = item.Patient_Id, docId=item.Doctor_Id})
+                        <input name="consDocId" type="hidden" value="@item.Doctor_Id" />
+                    </td>                   
+                </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2"> No Consultation slot booked for you                        
+                </td>
+               </tr>
+            }
+
+</tbody>
+    </table>
+</body>
+</html>

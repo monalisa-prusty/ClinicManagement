@@ -1,0 +1,21 @@
+﻿@model ClinicManagementProject.Models.Patient
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Patient/_PatientLayout.cshtml";
+}
+
+<html>
+<head>
+    <link href="~/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="alert alert-danger">
+        @ViewData["Message"]
+    </section>
+    <section>
+        @Html.ActionLink("Book Appointment", "BookAppointment", new {str = Model.Username } )
+    </section>
+</body>
+
+</html> 
